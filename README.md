@@ -1,52 +1,187 @@
-# ClientManagementFrontend
+# Client Management Application
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.4.
-
-## Deployed Application
+A full-stack client management system built with Angular and Express.js that allows users to manage, track, and organize client information efficiently.
 
 **Live Demo:** https://client-management-frontend-inky.vercel.app/
 
-## Development server
+## Table of Contents
 
-To start a local development server, run:
+- [Installation & Setup](#installation--setup)
+- [Tech Stack](#tech-stack)
+- [Architecture Decisions](#architecture-decisions)
+- [Future Improvements](#future-improvements)
+- [Development](#development)
+
+---
+
+## Installation & Setup
+
+### Prerequisites
+
+- **Node.js** (v20+) and npm (v11.7.0+)
+- **MongoDB** (local or cloud instance - MongoDB Atlas recommended)
+- Git
+
+### Frontend Setup
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/Kumar-Saurabh-Tiwari/client-management-frontend
+   cd client-management-frontend
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Configure API endpoint** (if needed):
+   - Update API URL in `src/app/core/api.config.ts`
+
+4. **Run development server:**
+   ```bash
+   npm start
+   ```
+   - Application opens at `http://localhost:4200/`
+
+### Backend Setup
+> Note: The backend repository is private. Access can be provided upon request if required.
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/Kumar-Saurabh-Tiwari/client-management-backend
+   cd client-management-backend
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Configure environment variables:**
+   - Create/update `.env` file with:
+     ```
+     MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/client-management
+     JWT_SECRET=your_jwt_secret_key
+     PORT=5000
+     ```
+
+4. **Run development server:**
+   ```bash
+   npm run dev
+   ```
+   - API server runs on `http://localhost:5000/`
+
+### Build for Production
 
 ```bash
-ng serve
+npm run build
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+The production build is optimized and stored in the `dist/` directory.
 
-## Code scaffolding
+---
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Tech Stack
 
+### Frontend
+- **Framework:** Angular 21.0.0
+- **Language:** TypeScript 5.9.2
+- **State Management:** RxJS 7.8.0 (Reactive Programming)
+- **Routing:** Angular Router
+- **Forms:** Angular Reactive Forms & Template-driven Forms
+- **Server-Side Rendering:** Angular SSR
+- **Testing:** Vitest 4.0.8 with JSDOM
+- **Styling:** SCSS
+- **Build Tool:** Angular CLI 21.0.4
+
+### Backend
+- **Runtime:** Node.js with Express.js 4.22.1
+- **Database:** MongoDB 9.5.0 (via Mongoose ORM)
+- **Authentication:** JWT (jsonwebtoken 9.0.3)
+- **Security:** bcryptjs 3.0.3 for password hashing
+- **Validation:** express-validator 7.3.2
+- **CORS:** Enabled for cross-origin requests
+- **Dev Tools:** Nodemon 3.1.14 for auto-reload
+
+### Deployment
+- **Frontend:** Vercel
+- **Backend:** (Configurable - supports Node.js hosting)
+- **Database:** MongoDB Atlas (Cloud)
+
+---
+
+## Architecture Decisions
+
+### 1. **Modular Component Structure**
+Components are organized by feature (dashboard, client-detail, login, etc.) with their own HTML, SCSS, and spec files, promoting maintainability and reusability.
+
+### 2. **Core Module Pattern**
+- **Guards:** `auth.guard.ts` protects routes requiring authentication
+- **Interceptors:** `auth.interceptor.ts` automatically attaches JWT tokens to API requests
+- **Config:** `api.config.ts` centralizes API endpoint configuration
+
+### 3. **Service-Based Data Flow**
+- `auth.service.ts` handles user authentication and token management
+- `client.service.ts` manages client CRUD operations
+- `health.service.ts` monitors API health
+- Services use RxJS Observables for reactive state management
+
+### 4. **JWT-Based Authentication**
+Token-based authentication eliminates server-side session storage, making the application stateless and scalable.
+
+### 5. **Server-Side Rendering (SSR)**
+Angular SSR improves SEO and initial page load performance by rendering content on the server before sending to the client.
+
+### 6. **Separation of Concerns**
+Frontend and backend are completely decoupled, allowing independent deployment and scaling of each tier.
+
+---
+
+## Future Improvements
+
+With more time, the following features would be implemented to enhance user experience and functionality:
+
+1. **Email Verification & Notifications:** Implement automated email verification during registration and send email notifications for important client updates and system events.
+
+2. **Offline Implementation:** Add offline-first capability using Service Workers and local storage to allow users to work with cached data when internet connectivity is unavailable, with automatic sync when connection is restored.
+
+3. **Service Worker Integration:** Develop comprehensive Service Worker support for progressive web app (PWA) capabilities, including push notifications, background sync, and app shell caching strategy.
+
+---
+
+## Development
+
+### Code Scaffolding
+
+Generate new components:
 ```bash
 ng generate component component-name
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### Running Tests
 
+Execute unit tests:
 ```bash
-ng generate --help
+npm test
 ```
 
-## Building
+### File Structure
 
-To build the project run:
-
-```bash
-ng build
+```
+src/
+├── app/
+│   ├── components/          # Feature components
+│   ├── core/                # Guards, interceptors, config
+│   ├── services/            # Business logic services
+│   └── app.ts               # Root component
+├── styles.scss              # Global styles
+└── main.ts                  # Application entry point
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+---
 
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
+**Built with ❤️ for efficient client management**
 
 ## Running end-to-end tests
 
