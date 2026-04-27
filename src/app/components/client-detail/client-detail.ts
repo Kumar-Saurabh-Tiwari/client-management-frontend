@@ -144,7 +144,7 @@ export class ClientDetail implements OnInit {
         this.editMode = false;
         this.errorMessage = '';
         this.isSaving = false;
-        window.location.reload(); // Force reload to update dashboard list
+        this.cd.detectChanges(); // 🔥 force update
       },
       error: () => {
         this.errorMessage = 'Failed to update client. Please try again.';
