@@ -1,0 +1,36 @@
+.auth-shell {
+  min-height: calc(100vh - 160px);
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 440px;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 12px 30px rgba(21, 39, 66, 0.12);
+}
+
+h1 {
+  margin-bottom: 0.25rem;
+  font-size: 1.8rem;
+  color: #1f3556;
+}
+
+p {
+  color: #5b6f8a;
+}
+
+.switch-link {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+@media (max-width: 576px) {
+  .auth-card {
+    padding: 1.25rem;
+  }
+}

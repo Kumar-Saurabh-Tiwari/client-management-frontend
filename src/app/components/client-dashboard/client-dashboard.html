@@ -1,0 +1,90 @@
+<main class="container py-4">
+    <section class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+        <div>
+            <h1 class="mb-1">Your Clients</h1>
+            <p class="text-muted mb-0">Track and manage all client projects in one place.</p>
+        </div>
+        <button class="btn btn-primary" (click)="showAddClientForm()">Add Client</button>
+    </section>
+
+    <div class="alert alert-danger" *ngIf="errorMessage" role="alert">
+        {{ errorMessage }}
+    </div>
+
+    <div class="text-center py-5" *ngIf="isLoading && !clients.length">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+
+    <section *ngIf="!isLoading || clients.length">
+        <div *ngIf="clients.length === 0" class="alert alert-light border text-center py-5">
+            No clients yet. Add your first client to get started.
+        </div>
+
+        <div class="row g-3" *ngIf="clients.length != 0">
+            <div class="col-12 col-md-6 col-xl-4" *ngFor="let client of clients">
+                <article class="client-card h-100" (click)="viewClientDetails(client)">
+                    <h5>{{ client.name }}</h5>
+                    <p class="small text-muted mb-2">{{ client.email }}</p>
+                    <p class="mb-2">{{ client.summary }}</p>
+                    <div class="badge-row">
+                        <span class="badge text-bg-light">{{ client.timeline }}</span>
+                        <span class="badge text-bg-light">{{ client.budget }}</span>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal fade" [ngClass]="{ show: showForm }" [style.display]="showForm ? 'block' : 'none'" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add New Client</h5>
+                    <button type="button" class="btn-close" (click)="closeForm()"></button>
+                </div>
+
+                <div class="modal-body">
+                    <form [formGroup]="clientForm" (ngSubmit)="onFormSubmit()" novalidate>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="name" class="form-label">Client Name</label>
+                                <input id="name" type="text" class="form-control" formControlName="name" />
+                            </div>
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">Client Email</label>
+                                <input id="email" type="email" class="form-control" formControlName="email" />
+                            </div>
+                            <div class="col-12">
+                                <label for="summary" class="form-label">Project Summary</label>
+                                <input id="summary" type="text" class="form-control" formControlName="summary" />
+                            </div>
+                            <div class="col-12">
+                                <label for="objectives" class="form-label">Objectives</label>
+                                <textarea id="objectives" rows="3" class="form-control" formControlName="objectives"></textarea>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="timeline" class="form-label">Timeline</label>
+                                <input id="timeline" type="text" class="form-control" formControlName="timeline" />
+                            </div>
+                            <div class="col-md-6">
+                                <label for="budget" class="form-label">Budget</label>
+                                <input id="budget" type="text" class="form-control" formControlName="budget" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" (click)="closeForm()">Cancel</button>
+                    <button type="button" class="btn btn-primary" (click)="onFormSubmit()" [disabled]="isSubmitting">
+                        {{ isSubmitting ? 'Saving...' : 'Save Client' }}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-backdrop fade" [ngClass]="{ show: showForm }" *ngIf="showForm"></div>
+</main>

@@ -1,0 +1,43 @@
+main {
+  min-height: calc(100vh - 170px);
+}
+
+h1 {
+  color: #173b63;
+  font-weight: 700;
+}
+
+.client-card {
+  background: #ffffff;
+  border: 1px solid #d9e4f2;
+  border-radius: 14px;
+  padding: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.client-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 22px rgba(22, 57, 93, 0.14);
+}
+
+.client-card h5 {
+  color: #1f3f66;
+  margin-bottom: 0.2rem;
+}
+
+.badge-row {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.modal-content {
+  border-radius: 14px;
+}
+
+@media (max-width: 768px) {
+  .client-card {
+    padding: 0.85rem;
+  }
+}

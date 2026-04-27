@@ -1,0 +1,35 @@
+.app-header {
+	position: sticky;
+	top: 0;
+	z-index: 10;
+	background: linear-gradient(120deg, #0f2f52 0%, #135d7e 100%);
+	box-shadow: 0 6px 18px rgba(15, 47, 82, 0.3);
+}
+
+.navbar-brand {
+	color: #f7fbff;
+	font-weight: 700;
+	letter-spacing: 0.4px;
+}
+
+.navbar-brand:hover {
+	color: #ffffff;
+}
+
+.nav-link {
+	color: #e5f0ff;
+}
+
+.nav-link:hover {
+	color: #ffffff;
+}
+
+.user-label {
+	color: #d7e8ff;
+	font-size: 0.9rem;
+	padding: 0.5rem;
+}
+
+.app-nav-wrap {
+	padding: 0.35rem 0.5rem;
+}

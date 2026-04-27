@@ -1,0 +1,31 @@
+main {
+  min-height: calc(100vh - 170px);
+}
+
+.detail-card {
+  background: #ffffff;
+  border: 1px solid #d9e4f2;
+  border-radius: 14px;
+  padding: 1rem;
+  box-shadow: 0 8px 20px rgba(22, 57, 93, 0.08);
+}
+
+h2 {
+  color: #1f3f66;
+  font-weight: 700;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .action-buttons {
+    width: 100%;
+  }
+
+  .action-buttons .btn {
+    flex: 1;
+  }
+}
